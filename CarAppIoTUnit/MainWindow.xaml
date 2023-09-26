@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CarAppIoTUnit"
         mc:Ignorable="d"
         Background="DarkGray"
-        Title="" Height="550" Width="500">
+        Title="" Height="650" Width="600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -58,21 +58,27 @@
             </Grid.ColumnDefinitions>
             <!--FAN-->
             <Grid Grid.Column="0">
-                <TextBlock x:Name="FanIcon" FontFamily="{StaticResource FontAwesome-Regular}" Text="&#xf863;" 
-    HorizontalAlignment="Center" 
-    VerticalAlignment="Center" 
-    FontSize="150" />
+                <TextBlock RenderTransformOrigin="0.5 0.5" x:Name="FanIcon" 
+                           FontFamily="{StaticResource FontAwesome-Solid}" Text="&#xf863;" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                FontSize="150">
+                    <TextBlock.RenderTransform>
+                        <RotateTransform x:Name="FanBlade" Angle="0"/>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+
             </Grid>
             <!--LOCK-->
             <Grid Grid.Column="1">
-                <TextBlock x:Name="LockIcon" FontFamily="{StaticResource FontAwesome-Regular}" Text="&#xf023;" 
+                <TextBlock x:Name="LockIcon" FontFamily="{StaticResource FontAwesome-Solid}" Text="&#xf023;" 
     HorizontalAlignment="Center" 
     VerticalAlignment="Center" 
     FontSize="150" />
             </Grid>
             <!--CHARGING-->
             <Grid Grid.Column="2">
-                <TextBlock x:Name="ChargeIcon" FontFamily="{StaticResource FontAwesome-Regular}" Text="&#xf0e7;" 
+                <TextBlock x:Name="ChargeIcon" FontFamily="{StaticResource FontAwesome-Solid}" Text="&#xf0e7;" 
     HorizontalAlignment="Center" 
     VerticalAlignment="Center" 
     FontSize="150"
@@ -125,15 +131,18 @@
 
             <!-- Switch 1 -->
 
-            <Button Grid.Column="0" Content="Turn On" Click="Fan_Click" Tag="FanButton"/>
+            <Button Grid.Column="0" Content="Turn On" Click="Fan_Click" Tag="FanButton"
+                    FontSize="20"/>
 
             <!-- Switch 2 -->
 
-            <Button Grid.Column="1" Content="Unlock" Click="Lock_Click" Tag="LockButton" />
+            <Button Grid.Column="1" Content="Unlock" Click="Lock_Click" Tag="LockButton" 
+                    FontSize="20"/>
 
             <!-- Switch 2 -->
 
-            <Button Grid.Column="2" Content="Resume" Click="Charge_Click" Tag="ChargeButton"/>
+            <Button Grid.Column="2" Content="Resume" Click="Charge_Click" Tag="ChargeButton"
+                    FontSize="20"/>
 
         </Grid>
               
@@ -147,4 +156,17 @@
                Foreground="Red" 
                Text="Disconnected From Car"/>
     </Grid>
+    
+    <!--FANBLADE ROTATE-->
+
+    <Window.Resources>
+        <Storyboard x:Key="FanStoryboard">
+            <DoubleAnimation 
+                Storyboard.TargetName="FanBlade"
+                Storyboard.TargetProperty="Angle"
+                From="0" To="360"
+                RepeatBehavior="Forever"/>
+        </Storyboard>
+    </Window.Resources>
+    
 </Window>

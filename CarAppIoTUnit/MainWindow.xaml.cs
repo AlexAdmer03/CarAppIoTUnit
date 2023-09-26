@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -20,9 +21,12 @@ namespace CarAppIoTUnit
     /// </summary>
     public partial class MainWindow : Window
     {
+        Storyboard fanStoryboard;
         public MainWindow()
         {
             InitializeComponent();
+
+            fanStoryboard = (Storyboard)FindResource("FanStoryboard");
 
             //ÄNDRA FÄRG => ConnectivityStatus.Foreground = Brushes.Blue;
             ConnectivityStatus.Foreground = Brushes.Green;
@@ -41,15 +45,21 @@ namespace CarAppIoTUnit
                     button.Content = "Turn Off";
                     FanStatus.Text = "|  Status: ON  |";
                     MessageBox.Show("Fans turned ON");
+                    fanStoryboard.Begin();
+
                 }
                 else
                 {
                     button.Content = "Turn On";
                     FanStatus.Text = "|  Status: OFF  |";
                     MessageBox.Show("Fans turned OFF");
+                    fanStoryboard.Stop();
+
                 }
             }
         }
+
+
 
         private void Lock_Click(object sender, RoutedEventArgs e)
         {
@@ -61,17 +71,24 @@ namespace CarAppIoTUnit
                     button.Content = "Lock";
                     LockStatus.Text = "|  Status: Unlocked  |";
                     MessageBox.Show("Car UNLOCKED");
-                    LockIcon.Text = "&#xf09c;";
+
+                    var run = new Run("\uf09c"); // Unicode character for the unlocked icon
+                    LockIcon.Inlines.Clear();
+                    LockIcon.Inlines.Add(run);
                 }
                 else
                 {
                     button.Content = "Unlock";
                     LockStatus.Text = "|  Status: Locked  |";
                     MessageBox.Show("Car LOCKED");
-                    LockIcon.Text = "&#xf3c1;";
+
+                    var run = new Run("\uf023"); // Unicode character for the locked icon
+                    LockIcon.Inlines.Clear();
+                    LockIcon.Inlines.Add(run);
                 }
             }
         }
+
 
         private void Charge_Click(object sender, RoutedEventArgs e)
         {
