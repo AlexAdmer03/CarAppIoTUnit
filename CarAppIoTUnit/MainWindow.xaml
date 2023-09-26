@@ -58,26 +58,27 @@
             </Grid.ColumnDefinitions>
             <!--FAN-->
             <Grid Grid.Column="0">
-                <TextBlock FontFamily="{StaticResource FontAwesome-Regular}" Text="&#xf863;" 
-            HorizontalAlignment="Center" 
-            VerticalAlignment="Center" 
-            FontSize="150" />
+                <TextBlock x:Name="FanIcon" FontFamily="{StaticResource FontAwesome-Regular}" Text="&#xf863;" 
+    HorizontalAlignment="Center" 
+    VerticalAlignment="Center" 
+    FontSize="150" />
             </Grid>
             <!--LOCK-->
             <Grid Grid.Column="1">
-                <TextBlock FontFamily="{StaticResource FontAwesome-Regular}" Text="&#xf023;" 
-            HorizontalAlignment="Center" 
-            VerticalAlignment="Center" 
-            FontSize="150" />
+                <TextBlock x:Name="LockIcon" FontFamily="{StaticResource FontAwesome-Regular}" Text="&#xf023;" 
+    HorizontalAlignment="Center" 
+    VerticalAlignment="Center" 
+    FontSize="150" />
             </Grid>
             <!--CHARGING-->
             <Grid Grid.Column="2">
-                <TextBlock FontFamily="{StaticResource FontAwesome-Regular}" Text="&#xf0e7;" 
-               HorizontalAlignment="Center" 
-               VerticalAlignment="Center" 
-               FontSize="150"
-               Foreground="LightGray"/>
+                <TextBlock x:Name="ChargeIcon" FontFamily="{StaticResource FontAwesome-Regular}" Text="&#xf0e7;" 
+    HorizontalAlignment="Center" 
+    VerticalAlignment="Center" 
+    FontSize="150"
+    Foreground="LightGray"/>
             </Grid>
+
         </Grid>
 
         <!--SUB-Titles-->

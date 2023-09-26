@@ -61,12 +61,14 @@ namespace CarAppIoTUnit
                     button.Content = "Lock";
                     LockStatus.Text = "|  Status: Unlocked  |";
                     MessageBox.Show("Car UNLOCKED");
+                    LockIcon.Text = "&#xf09c;";
                 }
                 else
                 {
                     button.Content = "Unlock";
                     LockStatus.Text = "|  Status: Locked  |";
                     MessageBox.Show("Car LOCKED");
+                    LockIcon.Text = "&#xf3c1;";
                 }
             }
         }
@@ -81,12 +83,16 @@ namespace CarAppIoTUnit
                     button.Content = "Stop";
                     ChargeStatus.Text = "|  Status: Charging  |";
                     MessageBox.Show("Car RESUMED Charging");
+                   
+                    ChargeIcon.Foreground = new SolidColorBrush(Colors.Yellow);
                 }
                 else
                 {
                     button.Content = "Resume";
                     ChargeStatus.Text = "|  Status: Not Charging  |";
                     MessageBox.Show("Car STOPPED Charging");
+                    
+                    ChargeIcon.Foreground = new SolidColorBrush(Colors.LightGray);
                 }
             }
         }
