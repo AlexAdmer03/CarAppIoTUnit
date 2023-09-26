@@ -27,6 +27,68 @@ namespace CarAppIoTUnit
             //ÄNDRA FÄRG => ConnectivityStatus.Foreground = Brushes.Blue;
             ConnectivityStatus.Foreground = Brushes.Green;
             ConnectivityStatus.Text = "Connected to Car";
+
+
+        }
+
+        private void Fan_Click(object sender, RoutedEventArgs e)
+        {
+            Button? button = sender as Button;
+            if (button != null)
+            {
+                if (button.Content.ToString() == "Turn On")
+                {
+                    button.Content = "Turn Off";
+                    FanStatus.Text = "|  Status: ON  |";
+                    MessageBox.Show("Fans turned ON");
+                }
+                else
+                {
+                    button.Content = "Turn On";
+                    FanStatus.Text = "|  Status: OFF  |";
+                    MessageBox.Show("Fans turned OFF");
+                }
+            }
+        }
+
+        private void Lock_Click(object sender, RoutedEventArgs e)
+        {
+            Button? button = sender as Button;
+            if (button != null)
+            {
+                if (button.Content.ToString() == "Unlock")
+                {
+                    button.Content = "Lock";
+                    LockStatus.Text = "|  Status: Unlocked  |";
+                    MessageBox.Show("Car UNLOCKED");
+                }
+                else
+                {
+                    button.Content = "Unlock";
+                    LockStatus.Text = "|  Status: Locked  |";
+                    MessageBox.Show("Car LOCKED");
+                }
+            }
+        }
+
+        private void Charge_Click(object sender, RoutedEventArgs e)
+        {
+            Button? button = sender as Button;
+            if (button != null)
+            {
+                if (button.Content.ToString() == "Resume")
+                {
+                    button.Content = "Stop";
+                    ChargeStatus.Text = "|  Status: Charging  |";
+                    MessageBox.Show("Car RESUMED Charging");
+                }
+                else
+                {
+                    button.Content = "Resume";
+                    ChargeStatus.Text = "|  Status: Not Charging  |";
+                    MessageBox.Show("Car STOPPED Charging");
+                }
+            }
         }
     }
 }

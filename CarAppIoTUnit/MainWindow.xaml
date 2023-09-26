@@ -5,14 +5,52 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarAppIoTUnit"
         mc:Ignorable="d"
-        Title="" Height="250" Width="200">
+        Background="DarkGray"
+        Title="" Height="550" Width="500">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="2.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
+        
+        <!--Titles-->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="0" Margin="5">
+            <Grid Grid.Column="0">
+                <TextBlock  
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    TextWrapping="Wrap" 
+                    FontSize="20" Text="|          Fans          |"/>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <TextBlock  
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    TextWrapping="Wrap" 
+                    FontSize="20" Text="|        Locks        |"/>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <TextBlock  
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    TextWrapping="Wrap" 
+                    FontSize="20" Text="|        Charge        |"/>
+            </Grid>
+
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -23,32 +61,88 @@
                 <TextBlock FontFamily="{StaticResource FontAwesome-Regular}" Text="&#xf863;" 
             HorizontalAlignment="Center" 
             VerticalAlignment="Center" 
-            FontSize="100" />
+            FontSize="150" />
             </Grid>
             <!--LOCK-->
             <Grid Grid.Column="1">
                 <TextBlock FontFamily="{StaticResource FontAwesome-Regular}" Text="&#xf023;" 
             HorizontalAlignment="Center" 
             VerticalAlignment="Center" 
-            FontSize="100" />
+            FontSize="150" />
             </Grid>
-            <!--CHARGING STATUS-->
+            <!--CHARGING-->
             <Grid Grid.Column="2">
                 <TextBlock FontFamily="{StaticResource FontAwesome-Regular}" Text="&#xf0e7;" 
-            HorizontalAlignment="Center" 
-            VerticalAlignment="Center" 
-            FontSize="100" />
+               HorizontalAlignment="Center" 
+               VerticalAlignment="Center" 
+               FontSize="150"
+               Foreground="LightGray"/>
             </Grid>
         </Grid>
 
+        <!--SUB-Titles-->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
+            <Grid Grid.Column="0">
+                <TextBlock x:Name="FanStatus" 
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   TextWrapping="Wrap" 
+                   FontSize="15" Text="|  Status:OFF  |"/>
+            </Grid>
 
-        <TextBlock x:Name="ConnectivityStatus" 
-               Grid.Row="1" 
+            <Grid Grid.Column="1">
+                <TextBlock x:Name="LockStatus" 
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="top"
+                   TextWrapping="Wrap" 
+                   FontSize="15" Text="|  Status: Locked  |"/>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <TextBlock x:Name="ChargeStatus" 
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   TextWrapping="Wrap" 
+                   Margin="5 0 5 0"
+                   FontSize="14" Text="|  Status: Not Charging  |"/>
+            </Grid>
+        </Grid>
+
+           <!--BUTTONS-->
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Switch 1 -->
+
+            <Button Grid.Column="0" Content="Turn On" Click="Fan_Click" Tag="FanButton"/>
+
+            <!-- Switch 2 -->
+
+            <Button Grid.Column="1" Content="Unlock" Click="Lock_Click" Tag="LockButton" />
+
+            <!-- Switch 2 -->
+
+            <Button Grid.Column="2" Content="Resume" Click="Charge_Click" Tag="ChargeButton"/>
+
+        </Grid>
+              
+
+            <TextBlock x:Name="ConnectivityStatus" 
+               Grid.Row="4" 
                HorizontalAlignment="Center" 
                Margin="0 20" 
                TextWrapping="Wrap" 
-               FontSize="14" 
+               FontSize="20" 
                Foreground="Red" 
                Text="Disconnected From Car"/>
     </Grid>
