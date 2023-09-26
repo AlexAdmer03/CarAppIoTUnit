@@ -5,8 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarAppIoTUnit"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="" Height="250" Width="200">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
 
+        <Grid Grid.Row="0" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <!--FAN-->
+            <Grid Grid.Column="0">
+                <TextBlock FontFamily="{StaticResource FontAwesome-Regular}" Text="&#xf863;" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center" 
+            FontSize="100" />
+            </Grid>
+            <!--LOCK-->
+            <Grid Grid.Column="1">
+                <TextBlock FontFamily="{StaticResource FontAwesome-Regular}" Text="&#xf023;" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center" 
+            FontSize="100" />
+            </Grid>
+            <!--CHARGING STATUS-->
+            <Grid Grid.Column="2">
+                <TextBlock FontFamily="{StaticResource FontAwesome-Regular}" Text="&#xf0e7;" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Center" 
+            FontSize="100" />
+            </Grid>
+        </Grid>
+
+
+
+        <TextBlock x:Name="ConnectivityStatus" 
+               Grid.Row="1" 
+               HorizontalAlignment="Center" 
+               Margin="0 20" 
+               TextWrapping="Wrap" 
+               FontSize="14" 
+               Foreground="Red" 
+               Text="Disconnected From Car"/>
     </Grid>
 </Window>

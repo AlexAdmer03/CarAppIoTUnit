@@ -23,6 +23,10 @@ namespace CarAppIoTUnit
         public MainWindow()
         {
             InitializeComponent();
+
+            //ÄNDRA FÄRG => ConnectivityStatus.Foreground = Brushes.Blue;
+            ConnectivityStatus.Foreground = Brushes.Green;
+            ConnectivityStatus.Text = "Connected to Car";
         }
     }
 }
