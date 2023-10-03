@@ -1,11 +1,8 @@
 ﻿using Microsoft.Azure.Devices.Client;
 using Newtonsoft.Json;
 using SharedLibrary.Models.Devices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
 
 namespace SharedLibrary.Services
 {

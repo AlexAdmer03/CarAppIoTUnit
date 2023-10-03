@@ -4,10 +4,10 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/WpfSharedLibrary;component/FontsDictionary.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/WpfSharedLibrary;component/Resources/FontDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
 
-<!--<ResourceDictionary Source="./Resources/FontDictionary.xaml" />-->
+    
