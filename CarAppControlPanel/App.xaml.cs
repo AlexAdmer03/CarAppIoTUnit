@@ -2,6 +2,7 @@
 using CarAppControlPanel.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Net.Http;
 using System.Windows;
 
 namespace CarAppControlPanel
@@ -17,6 +18,8 @@ namespace CarAppControlPanel
                 .ConfigureServices(services =>
                 {
                     services.AddSingleton<DateAndTimeService>();
+                    services.AddSingleton<WeatherService>();
+                    services.AddTransient<HttpClient>();
 
                     services.AddSingleton<HomeViewModel>();
                     services.AddSingleton<SettingsViewModel>();

@@ -12,12 +12,16 @@ namespace CarAppControlPanel.MVVM.ViewModels
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly DateAndTimeService _dateAndTimeService;
-        public HomeViewModel(IServiceProvider serviceProvider, DateAndTimeService dateAndTimeService)
+        private readonly WeatherService _weatherService;
+        public HomeViewModel(IServiceProvider serviceProvider, DateAndTimeService dateAndTimeService, WeatherService weatherService)
         {
             _serviceProvider = serviceProvider;
             _dateAndTimeService = dateAndTimeService;
+            _weatherService = weatherService;
 
             UpdateDateAndTime();
+            UpdateWeather();
+            
         }
 
         [ObservableProperty]
@@ -46,6 +50,15 @@ namespace CarAppControlPanel.MVVM.ViewModels
             {
                 CurrentDate = _dateAndTimeService.CurrentDate;
                 CurrentTime = _dateAndTimeService.CurrentTime;
+            };
+        }
+
+        private void UpdateWeather()
+        {
+            _dateAndTimeService.TimeUpdated += () =>
+            {
+                CurrentWeatherCondition = _weatherService.CurrentWeatherCondition;
+                CurrentTemperature = _weatherService.CurrentTemperature;
             };
         }
     }
