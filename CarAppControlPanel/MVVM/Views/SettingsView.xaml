@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="CarAppControlPanel.MVVM.Views.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CarAppControlPanel.MVVM.Views"
+             xmlns:viewmodels="clr-namespace:CarAppControlPanel.MVVM.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:SettingsViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1280">
+    <Grid>
+        <Rectangle Fill="#000000" Opacity="0.90"/>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/> 
+                <ColumnDefinition Width="*"/> 
+            </Grid.ColumnDefinitions>
+            
+            <!--NavigationSection-->
+            <Grid Grid.Column="0">
+                <Rectangle Fill="#222222"/>
+                <StackPanel VerticalAlignment="Bottom">
+                    <Button Command="{Binding ShowAddCarCommand}" Content="&#x2b;"/>
+                    <Button Command="{Binding ShowCarListCommand}" Content="&#xf03a;"/>
+                    <Button Command="{Binding ShowConfigurationCommand}" Content="&#xf013;"/>
+                    <Button Command="{Binding ExilApplicationCommand}" Content="&#xf011;"/>
+                </StackPanel>
+            </Grid>
+            
+            <!--Content Section-->
+
+            <Grid Grid.Column="1" Margin="40">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <!--Header-->
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <!--HeadLine Section-->
+                    <TextBlock Grid.Column="0" Text="{Binding Title, FallbackValue=Settings}" Foreground="White"/>
+                    
+                    <!--Home Button Section-->
+                    <Button Grid.Column="1" Command="{Binding NavigateToHomeCommand}" Content="X"/>
+                </Grid>
+                
+                <!--Content Section-->
+                <ContentControl Grid.Row="1" Content="{Binding CurrentContentViewModel}" Margin="0 10 0 0">
+                    
+                </ContentControl>
+                
+            </Grid>
+            
+        </Grid>
+        
+    </Grid>
+</UserControl>
