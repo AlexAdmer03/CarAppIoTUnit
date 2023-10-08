@@ -5,6 +5,9 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/WpfSharedLibrary;component/Resources/FontDictionary.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/WpfSharedLibrary;component/Resources/ButtonsDictionary.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/WpfSharedLibrary;component/Resources/DateAndTimeSectionDictionary.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/WpfSharedLibrary;component/Resources/WeatherSectionDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
