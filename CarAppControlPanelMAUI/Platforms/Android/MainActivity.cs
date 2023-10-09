@@ -13,7 +13,7 @@ namespace CarAppControlPanelMAUI
 
             if(Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
             {
-                Window.SetNavigationBarColor(Android.Graphics.Color.Rgb(15, 50, 111));
+                Window.SetNavigationBarColor(Android.Graphics.Color.ParseColor("#030b15"));
             }
         }
     }

@@ -3,13 +3,47 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CarAppControlPanelMAUI.MainPage"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             Shell.NavBarIsVisible="False"
-             Background="{StaticResource Background}">
+             Shell.NavBarIsVisible="False">
 
+    <Grid>
 
+        <Image Source="gt63close.jpg" Aspect="AspectFill" />
+        <BoxView Color="#030b15" Opacity="0.86" />
 
-    <ScrollView>
-       
-    </ScrollView>
+        <Grid>
+            <!-- Move RowDefinitions to the top -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Frame Background="transparent" BorderColor="Transparent" Margin="0, 50, 0, 0">
+                    <Image x:Name="MainCarImage" Source="./Resources/Images/gt63s.png" Opacity="0.8"/>
+                </Frame>
+            </Grid>
+
+            <!--BUTTONS-->
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <!--button1-->
+                <Grid Grid.Row="0" Margin="40, 60, 40, 0">
+                    <Button x:Name="btn1" Text="Manage car" FontSize="Large"
+                     Clicked="OnGetStartedClicked">
+                    </Button>
+                </Grid>
+
+                <!--button2-->
+                <Grid Grid.Row="1" Margin="40, 40, 40, 0">
+                    <Button x:Name="btn2" Text="Settings" FontSize="Large">
+                    </Button>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
 
 </ContentPage>
