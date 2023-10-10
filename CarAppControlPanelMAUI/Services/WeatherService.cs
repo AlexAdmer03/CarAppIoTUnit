@@ -1,12 +1,7 @@
-﻿
+﻿using Newtonsoft.Json;
+using Timer = System.Timers.Timer;
 
-using Newtonsoft.Json;
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Timers;
-
-namespace CarAppControlPanel.Services
+namespace CarAppControlPanelMAUI.Services
 {
     public class WeatherService
     {
@@ -15,9 +10,9 @@ namespace CarAppControlPanel.Services
         private readonly Timer _timer;
         private readonly HttpClient _http;
 
-        public string? CurrentWeatherCondition { get; private set; }
-        public string? CurrentTemperature {  get; private set; }
-        public event Action? WeatherUpdated;
+        public string CurrentWeatherCondition { get; private set; }
+        public string CurrentTemperature {  get; private set; }
+        public event Action WeatherUpdated;
         public WeatherService(HttpClient http)
         {
             _http = http;

@@ -1,49 +1,49 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿//using CommunityToolkit.Mvvm.ComponentModel;
+//using CommunityToolkit.Mvvm.Input;
+//using Microsoft.Extensions.DependencyInjection;
+//using System;
 
-namespace CarAppControlPanel.MVVM.ViewModels
-{
-    public partial class SettingsViewModel : ObservableObject
-    {
+//namespace CarAppControlPanel.MVVM.ViewModels
+//{
+//    public partial class SettingsViewModel : ObservableObject
+//    {
 
-        private readonly IServiceProvider _serviceProvider;
+//        private readonly IServiceProvider _serviceProvider;
 
-        public SettingsViewModel(IServiceProvider serviceProvider)
-        {
-            _serviceProvider = serviceProvider;
-        }
+//        public SettingsViewModel(IServiceProvider serviceProvider)
+//        {
+//            _serviceProvider = serviceProvider;
+//        }
 
-        [ObservableProperty]
-        private string? _title = "Settings";
-        [ObservableProperty]
-        private ObservableObject? _currentContentViewModel;
-        [RelayCommand]
-        private void ExilApplication()
-        {
-            Environment.Exit(0);
-        }
-        [RelayCommand]
-        private void NavigateToHome()
-        {
-            var mainWindowViewModel = _serviceProvider.GetRequiredService<MainWindowViewModel>();
-            mainWindowViewModel.CurrentViewModel = _serviceProvider.GetRequiredService<HomeViewModel>();
-        }
-        [RelayCommand]
-        private void ShowAddCar()
-        {
+//        [ObservableProperty]
+//        private string? _title = "Settings";
+//        [ObservableProperty]
+//        private ObservableObject? _currentContentViewModel;
+//        [RelayCommand]
+//        private void ExilApplication()
+//        {
+//            Environment.Exit(0);
+//        }
+//        [RelayCommand]
+//        private void NavigateToHome()
+//        {
+//            var mainWindowViewModel = _serviceProvider.GetRequiredService<MainWindowViewModel>();
+//            mainWindowViewModel.CurrentViewModel = _serviceProvider.GetRequiredService<HomeViewModel>();
+//        }
+//        [RelayCommand]
+//        private void ShowAddCar()
+//        {
 
-        }
-        [RelayCommand]
-        private void ShowCarList()
-        {
+//        }
+//        [RelayCommand]
+//        private void ShowCarList()
+//        {
 
-        }
-        [RelayCommand]
-        private void ShowConfiguration()
-        {
+//        }
+//        [RelayCommand]
+//        private void ShowConfiguration()
+//        {
 
-        }
-    }
-}
+//        }
+//    }
+//}

@@ -1,14 +1,15 @@
-﻿using System;
-using System.Timers;
-namespace CarAppControlPanel.Services;
+﻿
+using Timer = System.Timers.Timer;
+
+namespace CarAppControlPanelMAUI.Services;
 
 public class DateAndTimeService
 {
     private readonly Timer _timer;
 
-    public event Action? TimeUpdated;
-    public string? CurrentDate { get; private set; }
-    public string? CurrentTime { get; private set; }
+    public event Action TimeUpdated;
+    public string CurrentDate { get; private set; }
+    public string CurrentTime { get; private set; }
 
     public DateAndTimeService()
     {

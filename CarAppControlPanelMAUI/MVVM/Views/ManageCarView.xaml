@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CarAppControlPanelMAUI.Pages.ManageCarView"
+             Title="ManageCarPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewmodels="clr-namespace:CarAppControlPanelMAUI.MVVM.ViewModels"
+             BindingContext="{x:Static viewmodels:ManageCarViewModel.Instance}"
+             Shell.NavBarIsVisible="False">
+
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="#030a12"></toolkit:StatusBarBehavior>
+    </ContentPage.Behaviors>
+
+    <Grid>
+        <Image Source="mercedesinterior.jpg" Aspect="AspectFill" />
+        <BoxView Color="#030b15" Opacity="0.85" />
+
+        <Grid RowDefinitions="auto,auto,auto,auto,auto,auto,auto">
+
+            <!--TOPROW-->
+            <Grid Grid.Row="0" ColumnDefinitions="*,*,*">
+                <!--BACK-->
+                <Grid Grid.Column="0">
+                    <ImageButton Source="backbutton.png" Clicked="OnBackButtonClicked" Opacity="0.7"
+                                 WidthRequest="60" HeightRequest="65" Padding="10" Margin="0,0,50,0" />
+                </Grid>
+                <!--LOCK-->
+                <Grid Grid.Column="1" x:Name="LockGrid">
+                    <Grid.GestureRecognizers>
+                        <SwipeGestureRecognizer Direction="Down" Command="{Binding UnlockCommand}"/>
+                        <SwipeGestureRecognizer Direction="Down" Command="{Binding LockCommand}"/>
+                    </Grid.GestureRecognizers>
+
+                    <Label Text="{Binding LockIcon}" FontFamily="FontAwesome5Solid" FontSize="40" TextColor="#aeb0b4"
+                   VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0" />
+                </Grid>
+                <!--WIFI-->
+                <Grid Grid.Column="2">
+                    <Label Text="&#xf1eb;" FontFamily="FontAwesome5Solid" FontSize="20" TextColor="#aeb0b4"
+                           VerticalOptions="Center"  HorizontalOptions="Center" Margin="45,0,0,10" />
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="1" RowDefinitions="Auto,*">
+                <!--MILES-->
+                <Label Grid.Row="0" Text="{Binding Miles}" TextColor="#aeb0b4" FontSize="100"
+           HorizontalTextAlignment="Center" Margin="0,45,0,0" />
+
+                <!--CARIMG-->
+                <Frame Grid.Row="0" Background="transparent" BorderColor="Transparent" Margin="0,90,0,0">
+                    <Image Source="./Resources/Images/gt63s.png"  RotationY="180" />
+                </Frame>
+            </Grid>
+
+
+        </Grid>
+
+    </Grid>
+
+</ContentPage>
