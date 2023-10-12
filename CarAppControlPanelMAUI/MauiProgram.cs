@@ -1,4 +1,7 @@
-﻿using CommunityToolkit.Maui;
+﻿using CarAppControlPanelMAUI.MVVM.ViewModels;
+using CarAppControlPanelMAUI.Pages;
+using CarAppControlPanelMAUI.Services;
+using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 
 namespace CarAppControlPanelMAUI
@@ -21,9 +24,20 @@ namespace CarAppControlPanelMAUI
                     fonts.AddFont("fa-thin-100.ttf", "FAthin");
                     fonts.AddFont("Rubik-Regular.ttf", "RubikRegular");
                 });
+            builder.Services.AddTransient<ManageCarView>();
+            builder.Services.AddTransient<ManageCarViewModel>();
+            builder.Services.AddTransient<MainPageViewModel>();
+            builder.Services.AddTransient<MainPage>();
+
+
+            builder.Services.AddSingleton<DateAndTimeService>();
+            builder.Services.AddSingleton<WeatherService>();
+            
+
+
 
 #if DEBUG
-		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

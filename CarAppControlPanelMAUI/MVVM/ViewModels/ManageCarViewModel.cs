@@ -1,20 +1,34 @@
 ﻿using CarAppControlPanelMAUI.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System.Windows.Input;
 
 namespace CarAppControlPanelMAUI.MVVM.ViewModels
 {
     public partial class ManageCarViewModel : ObservableObject
     {
-        public static ManageCarViewModel Instance { get; } = new ManageCarViewModel();
-        public ManageCarViewModel()
-        {
-            isLocked = true;
-        }
 
         private readonly IServiceProvider _serviceProvider;
-        private readonly Services.DateAndTimeService _dateAndTimeService;
-        private readonly Services.WeatherService _weatherService;
+        private readonly DateAndTimeService _dateAndTimeService;
+        private readonly WeatherService _weatherService;
+
+        //CHARGINGLOGIC________________________________
+        private bool isCharging = true;
+        public bool IsCharging
+        {
+            get => isCharging;
+            set => SetProperty(ref isCharging, value);
+        }
+        public ICommand ToggleChargingCommand => new Command(ToggleCharging);
+
+        private void ToggleCharging()
+        {
+            IsCharging = !IsCharging;
+            OnPropertyChanged(nameof(ChargeIcon));
+        }
+
+        public string ChargeIcon => IsCharging ? "\uf0e7" : "\ue0b8";
+
 
         //LOCKMECHANISM-----------------------------------
         private bool isLocked;
@@ -25,17 +39,12 @@ namespace CarAppControlPanelMAUI.MVVM.ViewModels
         }
         public string LockIcon => IsLocked ? "\uf023" : "\uf3c1";
 
-        public ICommand LockCommand => new Command(Lock);
-        public ICommand UnlockCommand => new Command(Unlock);
+        public ICommand ToggleLockCommand => new Command(ToggleLock);
 
-        private void Lock()
+        private void ToggleLock()
         {
-            IsLocked = true;
-        }
-
-        private void Unlock()
-        {
-            IsLocked = false;
+            IsLocked = !IsLocked;
+            OnPropertyChanged(nameof(LockIcon));
         }
         //-----------------------------------
         public ManageCarViewModel(IServiceProvider serviceProvider, DateAndTimeService dateAndTimeService, WeatherService weatherService)
@@ -46,21 +55,33 @@ namespace CarAppControlPanelMAUI.MVVM.ViewModels
 
             UpdateDateAndTime();
             UpdateWeather();
+
+            isLocked = true;
         }
 
 
         [ObservableProperty]
-        private string _miles = "271";
+        private string _distance = "271";
         [ObservableProperty]
-        private string _currentTime = "--";
+        private string _distanceUnit = "km";
+        [ObservableProperty]
+        private string _currentTime = "--:--";
         [ObservableProperty]
         private string _currentDate;
         [ObservableProperty]
-        private string _currentWeatherCondition = "\ue137";
+        private string _interiorTemprature = "--";
+        [ObservableProperty]
+        private string _currentWeatherCondition = "\uf185";
         [ObservableProperty]
         private string _currentTemperature = "--";
         [ObservableProperty]
         private string _currentTemperatureUnit = "°C";
+
+        [RelayCommand]
+        async Task GoBack()
+        {
+            await Shell.Current.Navigation.PopAsync();
+        }
 
         private void UpdateDateAndTime()
         {

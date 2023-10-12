@@ -1,15 +1,14 @@
+
+using CarAppControlPanelMAUI.MVVM.ViewModels;
+
 namespace CarAppControlPanelMAUI.Pages;
 
 public partial class ManageCarView : ContentPage
 {
-	public ManageCarView()
+	public ManageCarView(ManageCarViewModel viewModel)
 	{
         InitializeComponent();
-    }
-
-    void OnBackButtonClicked(object sender, EventArgs e)
-    {
-        Navigation.PopAsync();
+        BindingContext = viewModel;
     }
 
 }

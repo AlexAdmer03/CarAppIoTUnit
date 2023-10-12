@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CarAppControlPanelMAUI.MainPage"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewModels="clr-namespace:CarAppControlPanelMAUI.MVVM.ViewModels"
+             x:DataType="viewModels:MainPageViewModel"
              Shell.NavBarIsVisible="False">
 
     <ContentPage.Behaviors>
@@ -37,14 +39,12 @@
                 <!--button1-->
                 <Grid Grid.Row="0" Margin="40, 60, 40, 0">
                     <Button x:Name="btn1" Text="Manage car" FontSize="Large"
-                     Clicked="OnGetStartedClicked">
-                    </Button>
+                     Command="{Binding NavigateToManageCarCommand}"/>
                 </Grid>
 
                 <!--button2-->
                 <Grid Grid.Row="1" Margin="40, 40, 40, 0">
-                    <Button x:Name="btn2" Text="Settings" FontSize="Large">
-                    </Button>
+                    <Button x:Name="btn2" Text="Settings" FontSize="Large"/>
                 </Grid>
             </Grid>
         </Grid>

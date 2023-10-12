@@ -5,7 +5,7 @@
              Title="ManageCarPage"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:viewmodels="clr-namespace:CarAppControlPanelMAUI.MVVM.ViewModels"
-             BindingContext="{x:Static viewmodels:ManageCarViewModel.Instance}"
+             x:DataType="viewmodels:ManageCarViewModel"
              Shell.NavBarIsVisible="False">
 
     <ContentPage.Behaviors>
@@ -22,19 +22,14 @@
             <Grid Grid.Row="0" ColumnDefinitions="*,*,*">
                 <!--BACK-->
                 <Grid Grid.Column="0">
-                    <ImageButton Source="backbutton.png" Clicked="OnBackButtonClicked" Opacity="0.7"
-                                 WidthRequest="60" HeightRequest="65" Padding="10" Margin="0,0,50,0" />
+                    <ImageButton Source="backbutton.png" Command="{Binding GoBackCommand}" Opacity="0.7"
+                                 WidthRequest="60" HeightRequest="65" Padding="10" Margin="0,0,30,0" />
                 </Grid>
                 <!--LOCK-->
-                <Grid Grid.Column="1" x:Name="LockGrid">
-                    <Grid.GestureRecognizers>
-                        <SwipeGestureRecognizer Direction="Down" Command="{Binding UnlockCommand}"/>
-                        <SwipeGestureRecognizer Direction="Down" Command="{Binding LockCommand}"/>
-                    </Grid.GestureRecognizers>
-
-                    <Label Text="{Binding LockIcon}" FontFamily="FontAwesome5Solid" FontSize="40" TextColor="#aeb0b4"
-                   VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0" />
-                </Grid>
+                <Button Grid.Column="1" 
+                        Text="{Binding LockIcon}" FontFamily="FontAwesome5Solid" FontSize="40" TextColor="#aeb0b4" 
+                        BackgroundColor="Transparent" BorderWidth="0" Command="{Binding ToggleLockCommand}" 
+                        VerticalOptions="Center" HorizontalOptions="Center" Margin="15,20,0,0"/>
                 <!--WIFI-->
                 <Grid Grid.Column="2">
                     <Label Text="&#xf1eb;" FontFamily="FontAwesome5Solid" FontSize="20" TextColor="#aeb0b4"
@@ -43,16 +38,54 @@
             </Grid>
 
             <Grid Grid.Row="1" RowDefinitions="Auto,*">
-                <!--MILES-->
-                <Label Grid.Row="0" Text="{Binding Miles}" TextColor="#aeb0b4" FontSize="100"
-           HorizontalTextAlignment="Center" Margin="0,45,0,0" />
+                <!--Distance-->
+                <Label Grid.Row="0" Text="{Binding Distance}" TextColor="#aeb0b4" FontSize="100"
+                       HorizontalTextAlignment="Center" Margin="0,40,60,0" />
+                <Label Grid.Row="0" Text="{Binding DistanceUnit}" TextColor="#aeb0b4" FontSize="70"
+                       HorizontalTextAlignment="Center" Margin="190,70,0,0" />
 
                 <!--CARIMG-->
-                <Frame Grid.Row="0" Background="transparent" BorderColor="Transparent" Margin="0,90,0,0">
+                <Frame Grid.Row="0" Background="transparent" BorderColor="Transparent" Margin="0,85,0,0">
                     <Image Source="./Resources/Images/gt63s.png"  RotationY="180" />
                 </Frame>
             </Grid>
+            
+            <!--WEATHER&CHARGE SECTION-->
+            
+            <Grid Grid.Row="2" ColumnDefinitions="auto,auto,auto" Margin="30,-10,0,0">
+                <!--WEATHER-->
+                <HorizontalStackLayout Grid.Column="0" >
+                    <Label Text="{Binding CurrentWeatherCondition}" FontFamily="FontAwesome5Solid" TextColor="#aeb0b4" FontSize="25" 
+                           Margin="0,-5,10,0"/>
+                    <Label Text="{Binding CurrentTemperature}" FontFamily="RubikRegular" TextColor="#aeb0b4" FontSize="15"/>
+                    <Label Text="{Binding CurrentTemperatureUnit}" FontFamily="RubikRegular" TextColor="#aeb0b4" FontSize="15"
+                           Margin="5,0,0,0"/>
+                </HorizontalStackLayout>
+   
+                <!--CHARGEBUTTON-->
+                <HorizontalStackLayout Grid.Column="1" Margin="40,-40,0,0">
+                    <Frame BackgroundColor="Transparent" BorderColor="Transparent">
+                        <Button x:Name="ChargeButton" Text="{Binding ChargeIcon}" FontFamily="FontAwesome5Solid" 
+                                TextColor="#aeb0b4" BackgroundColor="Transparent" Command="{Binding ToggleChargingCommand}" 
+                                FontSize="35" WidthRequest="80" />
+                    </Frame>
+                </HorizontalStackLayout>
 
+                <!--INTERIOR TEMP-->
+                <HorizontalStackLayout Grid.Column="2">
+                    <Label Text="&#xf2c8;" FontFamily="FontAwesome5Solid" TextColor="#aeb0b4" FontSize="25" Margin="10,-5,0,0"/>
+                    <Label Text="Interior" FontFamily="RubikRegular" TextColor="#aeb0b4" FontSize="15"/>
+                    <Label Text="{Binding InteriorTemprature}" FontFamily="RubikRegular" TextColor="#aeb0b4" FontSize="15"/>
+                    <Label Text="{Binding CurrentTemperatureUnit}" FontFamily="RubikRegular" TextColor="#aeb0b4" FontSize="15"/>
+                </HorizontalStackLayout>
+            </Grid>
+               
+            <!--DATE AND TIME SECTION-->
+
+            <StackLayout Grid.Row="3" HorizontalOptions="Center">
+                <Label Text="{Binding CurrentTime}" TextColor="#aeb0b4" FontSize="35" Margin="0,-10,0,0"/>
+                <Label Text="{Binding CurrentDate}" Style="{StaticResource CurrentDate}" />
+            </StackLayout>
 
         </Grid>
 

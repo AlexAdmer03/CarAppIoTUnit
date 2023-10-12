@@ -5,17 +5,18 @@ namespace CarAppControlPanelMAUI.Services
 {
     public class WeatherService
     {
-        private readonly string _url = "https://api.openweathermap.org/data/2.5/onecall?lat=59.1875&lon=18.1232&appid=08436f2eab32650f16d381dea75f04cc";
+        private readonly string _url = "https://api.openweathermap.org/data/3.0/onecall?lat=59.33258&lon=18.0649&appid=08436f2eab32650f16d381dea75f04cc";
 
         private readonly Timer _timer;
         private readonly HttpClient _http;
 
         public string CurrentWeatherCondition { get; private set; }
         public string CurrentTemperature {  get; private set; }
+
         public event Action WeatherUpdated;
-        public WeatherService(HttpClient http)
+        public WeatherService()
         {
-            _http = http;
+            _http = new HttpClient();
             
             Task.Run(SetCurrentWeatherAsync);
             _timer = new Timer(60000 * 15);    

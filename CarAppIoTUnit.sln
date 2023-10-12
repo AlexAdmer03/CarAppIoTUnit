@@ -7,11 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarAppIoTUnit", "CarAppIoTU
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedLibrary", "SharedLibrary\SharedLibrary.csproj", "{D5E4BAC9-08B3-4DFA-A5CC-FD8B2253D307}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarAppControlPanel", "CarAppControlPanel\CarAppControlPanel.csproj", "{B48ACC82-B304-4EAD-9E9D-02EE870659EE}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfSharedLibrary", "WpfSharedLibrary\WpfSharedLibrary.csproj", "{C2EA4793-54C9-4C32-A261-4AC816E0B8E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarAppControlPanelMAUI", "CarAppControlPanelMAUI\CarAppControlPanelMAUI.csproj", "{0CA937F1-D999-47D5-8FAC-CD512AE523E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarAppControlPanelMAUI", "CarAppControlPanelMAUI\CarAppControlPanelMAUI.csproj", "{0CA937F1-D999-47D5-8FAC-CD512AE523E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,10 +25,6 @@ Global
 		{D5E4BAC9-08B3-4DFA-A5CC-FD8B2253D307}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5E4BAC9-08B3-4DFA-A5CC-FD8B2253D307}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5E4BAC9-08B3-4DFA-A5CC-FD8B2253D307}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B48ACC82-B304-4EAD-9E9D-02EE870659EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B48ACC82-B304-4EAD-9E9D-02EE870659EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B48ACC82-B304-4EAD-9E9D-02EE870659EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B48ACC82-B304-4EAD-9E9D-02EE870659EE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C2EA4793-54C9-4C32-A261-4AC816E0B8E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C2EA4793-54C9-4C32-A261-4AC816E0B8E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2EA4793-54C9-4C32-A261-4AC816E0B8E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
