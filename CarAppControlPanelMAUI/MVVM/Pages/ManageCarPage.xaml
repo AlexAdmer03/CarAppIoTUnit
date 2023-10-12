@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CarAppControlPanelMAUI.Pages.ManageCarView"
+             x:Class="CarAppControlPanelMAUI.Pages.ManageCarPage"
              Title="ManageCarPage"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:viewmodels="clr-namespace:CarAppControlPanelMAUI.MVVM.ViewModels"
@@ -49,9 +49,9 @@
                     <Image Source="./Resources/Images/gt63s.png"  RotationY="180" />
                 </Frame>
             </Grid>
-            
+
             <!--WEATHER&CHARGE SECTION-->
-            
+
             <Grid Grid.Row="2" ColumnDefinitions="auto,auto,auto" Margin="30,-10,0,0">
                 <!--WEATHER-->
                 <HorizontalStackLayout Grid.Column="0" >
@@ -61,7 +61,7 @@
                     <Label Text="{Binding CurrentTemperatureUnit}" FontFamily="RubikRegular" TextColor="#aeb0b4" FontSize="15"
                            Margin="5,0,0,0"/>
                 </HorizontalStackLayout>
-   
+
                 <!--CHARGEBUTTON-->
                 <HorizontalStackLayout Grid.Column="1" Margin="40,-40,0,0">
                     <Frame BackgroundColor="Transparent" BorderColor="Transparent">
@@ -75,16 +75,53 @@
                 <HorizontalStackLayout Grid.Column="2">
                     <Label Text="&#xf2c8;" FontFamily="FontAwesome5Solid" TextColor="#aeb0b4" FontSize="25" Margin="10,-5,0,0"/>
                     <Label Text="Interior" FontFamily="RubikRegular" TextColor="#aeb0b4" FontSize="15"/>
-                    <Label Text="{Binding InteriorTemprature}" FontFamily="RubikRegular" TextColor="#aeb0b4" FontSize="15"/>
+                    <Label Text="{Binding InteriorTemperature}" FontFamily="RubikRegular" TextColor="#aeb0b4" FontSize="15"/>
                     <Label Text="{Binding CurrentTemperatureUnit}" FontFamily="RubikRegular" TextColor="#aeb0b4" FontSize="15"/>
                 </HorizontalStackLayout>
             </Grid>
-               
+
             <!--DATE AND TIME SECTION-->
 
-            <StackLayout Grid.Row="3" HorizontalOptions="Center">
-                <Label Text="{Binding CurrentTime}" TextColor="#aeb0b4" FontSize="35" Margin="0,-10,0,0"/>
-                <Label Text="{Binding CurrentDate}" Style="{StaticResource CurrentDate}" />
+            <StackLayout Grid.Row="3" HorizontalOptions="Center" Margin="0,15,0,0">
+                <Label Text="{Binding CurrentTime}" TextColor="#aeb0b4" FontSize="35" Margin="0,-10,0,0"
+                       HorizontalTextAlignment="Center"/>
+                <Label Text="{Binding CurrentDate}" Style="{StaticResource CurrentDate}" TextColor="#aeb0b4"/>
+            </StackLayout>
+
+            <!--FUNCTIONS SECTION-->
+
+            <StackLayout Grid.Row="4">
+                <!--TOPROW-->
+                <HorizontalStackLayout HorizontalOptions="Center" Margin="0,50,0,0" Spacing="20">
+                    <ImageButton Source="carseat.png" WidthRequest="45" HeightRequest="45" />
+                    
+                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <Button Text="▲" Command="{Binding IncreaseLeftTemperatureCommand}" BackgroundColor="Transparent" />
+                        <Label Text="{Binding LeftFanTemperature}" FontSize="20" TextColor="#aeb0b4" HorizontalOptions="Center"/>
+                        <Button Text="▼" Command="{Binding DecreaseLeftTemperatureCommand}" BackgroundColor="Transparent"/>
+                    </StackLayout>
+                        
+                    <Label Text="&#xf863;" FontFamily="FontAwesome5Solid" FontSize="45" TextColor="#aeb0b4" VerticalOptions="Center"/>
+                        
+                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <Button Text="▲" Command="{Binding IncreaseRightTemperatureCommand}" BackgroundColor="Transparent" />
+                        <Label Text="{Binding RightFanTemperature}" FontSize="20" TextColor="#aeb0b4" HorizontalOptions="Center"/>
+                        <Button Text="▼" Command="{Binding DecreaseRightTemperatureCommand}" BackgroundColor="Transparent"/>
+                    </StackLayout>
+                    
+                    <ImageButton Source="carseat.png" RotationY="180"
+                      WidthRequest="45" HeightRequest="45"/>
+                </HorizontalStackLayout>
+                <!--UnderROW-->
+                <HorizontalStackLayout HorizontalOptions="Center" Margin="0,20,0,0" Spacing="40">
+                    <Label Text="&#xf5e7;" FontFamily="FontAwesome5Solid" FontSize="45" TextColor="#aeb0b4"/>
+                    <ImageButton Source="carair.png" RotationY="180"
+                      WidthRequest="45" HeightRequest="45"/>
+                    <ImageButton Source="cartrunk.png" RotationY="180"
+                      WidthRequest="45" HeightRequest="45"/>
+                    <ImageButton Source="cardoor.png" RotationY="180"
+                      WidthRequest="45" HeightRequest="45"/>
+                </HorizontalStackLayout>
             </StackLayout>
 
         </Grid>

@@ -44,7 +44,8 @@
 
                 <!--button2-->
                 <Grid Grid.Row="1" Margin="40, 40, 40, 0">
-                    <Button x:Name="btn2" Text="Settings" FontSize="Large"/>
+                    <Button x:Name="btn2" Text="Settings" FontSize="Large"
+                            Command="{Binding NavigateToSettingsPageCommand}"/>
                 </Grid>
             </Grid>
         </Grid>

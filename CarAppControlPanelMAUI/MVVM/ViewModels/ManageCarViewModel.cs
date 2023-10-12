@@ -11,6 +11,7 @@ namespace CarAppControlPanelMAUI.MVVM.ViewModels
         private readonly IServiceProvider _serviceProvider;
         private readonly DateAndTimeService _dateAndTimeService;
         private readonly WeatherService _weatherService;
+        private readonly InteriorTemperatureService _interiorTemperatureService;
 
         //CHARGINGLOGIC________________________________
         private bool isCharging = true;
@@ -47,11 +48,19 @@ namespace CarAppControlPanelMAUI.MVVM.ViewModels
             OnPropertyChanged(nameof(LockIcon));
         }
         //-----------------------------------
-        public ManageCarViewModel(IServiceProvider serviceProvider, DateAndTimeService dateAndTimeService, WeatherService weatherService)
+        public ManageCarViewModel(IServiceProvider serviceProvider, DateAndTimeService dateAndTimeService,
+            WeatherService weatherService, InteriorTemperatureService interiorTemperatureService)
         {
             _serviceProvider = serviceProvider;
             _dateAndTimeService = dateAndTimeService;
             _weatherService = weatherService;
+            
+            _interiorTemperatureService = new InteriorTemperatureService();
+            _interiorTemperatureService.OnTemperatureChanged += (newTemp) =>
+            {
+                InteriorTemperature = newTemp.ToString(); 
+            };
+
 
             UpdateDateAndTime();
             UpdateWeather();
@@ -69,13 +78,17 @@ namespace CarAppControlPanelMAUI.MVVM.ViewModels
         [ObservableProperty]
         private string _currentDate;
         [ObservableProperty]
-        private string _interiorTemprature = "--";
+        private string _interiorTemperature = "--";
         [ObservableProperty]
         private string _currentWeatherCondition = "\uf185";
         [ObservableProperty]
         private string _currentTemperature = "--";
         [ObservableProperty]
         private string _currentTemperatureUnit = "°C";
+        [ObservableProperty]
+        private int _leftFanTemperature = 20;
+        [ObservableProperty]
+        private int _rightFanTemperature = 20;
 
         [RelayCommand]
         async Task GoBack()
@@ -83,6 +96,40 @@ namespace CarAppControlPanelMAUI.MVVM.ViewModels
             await Shell.Current.Navigation.PopAsync();
         }
 
+        //FANFUNCTIONS____________
+        //LEFT
+        public ICommand IncreaseLeftTemperatureCommand => new RelayCommand(IncreaseLeftTemperature);
+        public ICommand DecreaseLeftTemperatureCommand => new RelayCommand(DecreaseLeftTemperature);
+
+        private void IncreaseLeftTemperature()
+        {
+            if (_leftFanTemperature < 30)
+                LeftFanTemperature++;
+        }
+
+        private void DecreaseLeftTemperature()
+        {
+            if (_leftFanTemperature > 16)
+                LeftFanTemperature--;
+        }
+
+        //_______RIGHT FAN________
+        public ICommand IncreaseRightTemperatureCommand => new RelayCommand(IncreaseRightTemperature);
+        public ICommand DecreaseRightTemperatureCommand => new RelayCommand(DecreaseRightTemperature);
+
+        private void IncreaseRightTemperature()
+        {
+            if (_rightFanTemperature < 30)
+                RightFanTemperature++;
+        }
+
+        private void DecreaseRightTemperature()
+        {
+            if (_rightFanTemperature > 16)
+                RightFanTemperature--;
+        }
+
+        //_____________
         private void UpdateDateAndTime()
         {
             _dateAndTimeService.TimeUpdated += () =>

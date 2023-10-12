@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CarAppControlPanelMAUI.MVVM.Pages.SettingsPage"
+             Title="SettingsPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewmodels="clr-namespace:CarAppControlPanelMAUI.MVVM.ViewModels"
+             x:DataType="viewmodels:SettingsViewModel"
+             Shell.NavBarIsVisible="false">
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="#030a12"></toolkit:StatusBarBehavior>
+    </ContentPage.Behaviors>
+
+    <Grid>
+        <Image Source="mercinteriorblue.jpg" Aspect="AspectFill" />
+        <BoxView Color="#030b15" Opacity="0.85" />
+
+        <Grid RowDefinitions="auto">
+            <Grid Grid.Row="0">
+                <ImageButton Source="backbutton.png" Command="{Binding GoBackCommand}" Opacity="0.7"
+                             WidthRequest="60" HeightRequest="65" Padding="10" Margin="0,0,30,0" />
+            </Grid>
+        </Grid>
+    </Grid>
+
+
+</ContentPage>

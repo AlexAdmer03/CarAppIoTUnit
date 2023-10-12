@@ -3,9 +3,9 @@ using CarAppControlPanelMAUI.MVVM.ViewModels;
 
 namespace CarAppControlPanelMAUI.Pages;
 
-public partial class ManageCarView : ContentPage
+public partial class ManageCarPage : ContentPage
 {
-	public ManageCarView(ManageCarViewModel viewModel)
+	public ManageCarPage(ManageCarViewModel viewModel)
 	{
         InitializeComponent();
         BindingContext = viewModel;

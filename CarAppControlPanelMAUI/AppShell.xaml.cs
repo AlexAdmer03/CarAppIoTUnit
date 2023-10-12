@@ -1,4 +1,5 @@
-﻿using CarAppControlPanelMAUI.Pages;
+﻿using CarAppControlPanelMAUI.MVVM.Pages;
+using CarAppControlPanelMAUI.Pages;
 
 namespace CarAppControlPanelMAUI
 {
@@ -7,7 +8,8 @@ namespace CarAppControlPanelMAUI
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(ManageCarView), typeof(ManageCarView));
+            Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
+            Routing.RegisterRoute(nameof(ManageCarPage), typeof(ManageCarPage));
             Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
         }
 

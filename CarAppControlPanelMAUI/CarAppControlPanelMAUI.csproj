@@ -39,7 +39,24 @@
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+		<MauiImage Update="Resources\Images\backbutton.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</MauiImage>
+		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</MauiImage>
+		<MauiImage Update="Resources\Images\gt63close.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</MauiImage>
+		<MauiImage Update="Resources\Images\gt63s.png">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</MauiImage>
+		<MauiImage Update="Resources\Images\mercedesinterior.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</MauiImage>
+		<MauiImage Update="Resources\Images\mercinteriorblue.jpg">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</MauiImage>
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -61,6 +78,10 @@
 	  <None Remove="Resources\Fonts\fa-solid-900.ttf" />
 	  <None Remove="Resources\Fonts\fa-thin-100.ttf" />
 	  <None Remove="Resources\Fonts\Rubik-Regular.ttf" />
+	  <None Remove="Resources\Images\svg-icons\car-door-4-svgrepo-com.svg" />
+	  <None Remove="Resources\Images\svg-icons\car-seat-svgrepo-com.svg" />
+	  <None Remove="Resources\Images\svg-icons\old-petrol-station-svgrepo-com.svg" />
+	  <None Remove="Resources\Images\svg-icons\open-car-trunk-svgrepo-com.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -114,18 +135,22 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="MVVM\Views\ManageCarView.xaml">
+	  <MauiXaml Update="MVVM\Pages\ManageCarPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Pages\SettingsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Folder Include="MVVM\Models\" />
+	  <Folder Include="MVVM\Views\" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="MVVM\Views\ManageCarView.xaml.cs">
-	    <DependentUpon>ManageCarView.xaml</DependentUpon>
+	  <Compile Update="MVVM\Pages\ManageCarPage.xaml.cs">
+	    <DependentUpon>ManageCarPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
