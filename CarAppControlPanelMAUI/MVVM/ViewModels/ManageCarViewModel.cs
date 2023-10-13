@@ -1,7 +1,10 @@
 ﻿using CarAppControlPanelMAUI.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using SharedLibrary.Services;
+using System.Diagnostics;
 using System.Windows.Input;
+
 
 namespace CarAppControlPanelMAUI.MVVM.ViewModels
 {
@@ -12,6 +15,24 @@ namespace CarAppControlPanelMAUI.MVVM.ViewModels
         private readonly DateAndTimeService _dateAndTimeService;
         private readonly WeatherService _weatherService;
         private readonly InteriorTemperatureService _interiorTemperatureService;
+        private readonly DeviceManager _deviceManager;
+
+        public ManageCarViewModel(IServiceProvider serviceProvider, DateAndTimeService dateAndTimeService,
+            WeatherService weatherService, InteriorTemperatureService interiorTemperatureService, DeviceManager deviceManager)
+        {
+            _serviceProvider = serviceProvider;
+            _dateAndTimeService = dateAndTimeService;
+            _weatherService = weatherService;
+            _interiorTemperatureService = interiorTemperatureService;
+            _deviceManager = deviceManager;
+
+
+            UpdateDateAndTime();
+            UpdateWeather();
+            UpdateInteriorTemperature();
+
+            isLocked = true;
+        }
 
         //CHARGINGLOGIC________________________________
         private bool isCharging = true;
@@ -29,7 +50,28 @@ namespace CarAppControlPanelMAUI.MVVM.ViewModels
         }
 
         public string ChargeIcon => IsCharging ? "\uf0e7" : "\ue0b8";
+        //___________________________________________________________
 
+        public bool IsFanOn { get; set; } = false;
+        //TOGGLE FAN
+        public async void ToggleState()
+        {
+            IsFanOn = !IsFanOn;
+            var deviceId = "CarFan1000";
+            string methodName = IsFanOn ? "start" : "stop";
+            try
+            {
+                await _deviceManager.SendDirectMethodAsync(deviceId, methodName);
+               
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                Debug.WriteLine(ex.StackTrace);
+            }
+        }
+
+        //____________
 
         //LOCKMECHANISM-----------------------------------
         private bool isLocked;
@@ -48,21 +90,7 @@ namespace CarAppControlPanelMAUI.MVVM.ViewModels
             OnPropertyChanged(nameof(LockIcon));
         }
         //-----------------------------------
-        public ManageCarViewModel(IServiceProvider serviceProvider, DateAndTimeService dateAndTimeService,
-            WeatherService weatherService, InteriorTemperatureService interiorTemperatureService)
-        {
-            _serviceProvider = serviceProvider;
-            _dateAndTimeService = dateAndTimeService;
-            _weatherService = weatherService;
-            _interiorTemperatureService = interiorTemperatureService;
-
-
-            UpdateDateAndTime();
-            UpdateWeather();
-            UpdateInteriorTemperature();
-
-            isLocked = true;
-        }
+        
 
 
         [ObservableProperty]

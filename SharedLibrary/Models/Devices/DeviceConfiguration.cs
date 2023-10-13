@@ -15,6 +15,8 @@ namespace SharedLibrary.Models.Devices
             _connectionString = connectionString;
         }
 
+
+
         public string DeviceId => _connectionString.Split(";")[1].Split("=")[1];
 
         public string ConnectionString => _connectionString;

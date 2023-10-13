@@ -103,9 +103,8 @@
                         <Label Text="{Binding LeftFanTemperature}" FontSize="20" TextColor="#aeb0b4" HorizontalOptions="Center"/>
                         <Button Text="▼" Command="{Binding DecreaseLeftTemperatureCommand}" BackgroundColor="Transparent"/>
                     </StackLayout>
-
-                    <Label x:Name="FanIcon" Text="&#xf863;" FontFamily="FontAwesome5Solid"
-                           FontSize="45" TextColor="#aeb0b4" VerticalOptions="Center">
+                    
+                    <Label x:Name="FanIcon" Text="&#xf863;" FontFamily="FontAwesome5Solid" FontSize="45" TextColor="#aeb0b4" VerticalOptions="Center">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnIconTapped"/>
                         </Label.GestureRecognizers>

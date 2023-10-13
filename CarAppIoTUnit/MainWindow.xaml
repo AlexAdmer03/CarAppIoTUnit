@@ -71,7 +71,7 @@
             <!--LOCK-->
             <Grid Grid.Column="1">
                 <TextBlock x:Name="LockIcon" FontFamily="{StaticResource FontAwesome-Solid}" Text="&#xf023;" 
-    HorizontalAlignment="Center" 
+                           HorizontalAlignment="Center" 
     VerticalAlignment="Center" 
     FontSize="150" />
             </Grid>

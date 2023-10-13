@@ -6,22 +6,25 @@ namespace CarAppControlPanelMAUI.Pages;
 public partial class ManageCarPage : ContentPage
 {
     private bool isRotating = false;
+    private readonly ManageCarViewModel _viewmodel;
     public ManageCarPage(ManageCarViewModel viewModel)
 	{
         InitializeComponent();
         BindingContext = viewModel;
+        _viewmodel = viewModel;
     }
 
-    private async void OnIconTapped(object sender, EventArgs e)
+    
+    private void OnIconTapped(object sender, EventArgs e)
     {
+        var viewModel = (ManageCarViewModel)BindingContext;
+        viewModel.ToggleState();
+
+        isRotating = !isRotating;
         if (isRotating)
         {
-            isRotating = false;
-            return;
+            _ = RotateIcon(); 
         }
-
-        isRotating = true;
-        await RotateIcon();
     }
 
     private async Task RotateIcon()

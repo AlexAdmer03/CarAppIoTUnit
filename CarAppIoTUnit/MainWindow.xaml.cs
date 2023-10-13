@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SharedLibrary.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,8 @@ namespace CarAppIoTUnit
     public partial class MainWindow : Window
     {
         Storyboard fanStoryboard;
-        public MainWindow()
+        private readonly DeviceManager _deviceManager;
+        public MainWindow(DeviceManager deviceManager)
         {
             InitializeComponent();
 
@@ -32,7 +34,27 @@ namespace CarAppIoTUnit
             ConnectivityStatus.Foreground = Brushes.Green;
             ConnectivityStatus.Text = "Connected to Car";
 
+            _deviceManager = deviceManager;
+            Task.WhenAll(ToggleLockStateAsync(), ToggleChargeStateAsync(), ToggleFanStateAsync());
+            
+        }
 
+        public async Task ToggleFanStateAsync()
+        {
+            Storyboard fan = (Storyboard)FindResource("FanStoryboard");
+
+            while (true)
+            {
+                if (_deviceManager.AllowSending())
+                {
+                    fan.Begin();
+                }
+                else
+                {
+                    fan.Stop();
+                }
+                await Task.Delay(1000);
+            }
         }
 
         private void Fan_Click(object sender, RoutedEventArgs e)
@@ -60,6 +82,18 @@ namespace CarAppIoTUnit
         }
 
 
+        private async Task ToggleLockStateAsync()
+        {
+            if (_deviceManager.AllowSending())
+            {
+                LockIcon.Text = "\uf023";
+            }
+            else
+            {
+                LockIcon.Text = "\uf09c";
+            }
+        }
+
 
         private void Lock_Click(object sender, RoutedEventArgs e)
         {
@@ -86,6 +120,19 @@ namespace CarAppIoTUnit
                     LockIcon.Inlines.Clear();
                     LockIcon.Inlines.Add(run);
                 }
+            }
+        }
+
+
+        private async Task ToggleChargeStateAsync()
+        {
+            if (_deviceManager.AllowSending())
+            {
+                ChargeIcon.Foreground = new SolidColorBrush(Colors.Yellow);
+            }
+            else
+            {
+                ChargeIcon.Foreground = new SolidColorBrush(Colors.LightGray);
             }
         }
 
