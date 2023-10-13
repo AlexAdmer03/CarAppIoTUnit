@@ -54,16 +54,12 @@ namespace CarAppControlPanelMAUI.MVVM.ViewModels
             _serviceProvider = serviceProvider;
             _dateAndTimeService = dateAndTimeService;
             _weatherService = weatherService;
-            
-            _interiorTemperatureService = new InteriorTemperatureService();
-            _interiorTemperatureService.OnTemperatureChanged += (newTemp) =>
-            {
-                InteriorTemperature = newTemp.ToString(); 
-            };
+            _interiorTemperatureService = interiorTemperatureService;
 
 
             UpdateDateAndTime();
             UpdateWeather();
+            UpdateInteriorTemperature();
 
             isLocked = true;
         }
@@ -78,7 +74,7 @@ namespace CarAppControlPanelMAUI.MVVM.ViewModels
         [ObservableProperty]
         private string _currentDate;
         [ObservableProperty]
-        private string _interiorTemperature = "--";
+        private string _interiorTemperature;
         [ObservableProperty]
         private string _currentWeatherCondition = "\uf185";
         [ObservableProperty]
@@ -139,6 +135,13 @@ namespace CarAppControlPanelMAUI.MVVM.ViewModels
             };
         }
 
+        private void UpdateInteriorTemperature()
+        {
+            _interiorTemperatureService.InteriorTemperatureUpdated += () =>
+            {
+                InteriorTemperature = _interiorTemperatureService.CurrentInteriorTemperature;
+            };
+        }
         private void UpdateWeather()
         {
             _dateAndTimeService.TimeUpdated += () =>
